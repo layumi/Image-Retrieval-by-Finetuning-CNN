@@ -23,11 +23,13 @@ Here I noted that our code is tested based on Pytorch 0.2.0 and Torchvision 0.2.
 
 ### 0.You may try our trained model first
 ```bash
-python demo.py --gpu_ids 0 --name ft_ResNet50 --test_dir ./gallery  --query_path ./demo.jpg
+python demo.py --gpu_ids 0 --name ft_ResNet50 --test_dir ./test/gallery  --query_path ./demo.jpg
 ```
 `gpu_ids` which gpu to run.
 
-`name` the name of model. 
+`name` the name of model.
+
+`query_path` the path of the query image.
 
 `test_dir` the dir including all candidate images. For example,
 
@@ -42,8 +44,6 @@ python demo.py --gpu_ids 0 --name ft_ResNet50 --test_dir ./gallery  --query_path
              cat/nsdf3.jpeg
 ```
 
-`query_path` the path of the image you want to test.
-
 Run `demo.py` under the terminal or graphical user interface (i.e. spyder)
 In the terminal, it will output the paths of the top-10 related images.
 In addition to top-10 image paths, the images will be showed if you run the code under the graphical user interface.
@@ -51,7 +51,7 @@ In addition to top-10 image paths, the images will be showed if you run the code
 ### 1.Collect Training data from Google Image
 Google Image contains lots of data. 
 Despite of noisy images, most images are somehow related to the keyword.
-So we use xxx method collecting the data from Google Image.
+So our method use web images collected from Google Image.
 
 ### 2.Train
 ```bash
@@ -79,6 +79,29 @@ Every class is store in a separate folder under the train/val dir.
 
 ### 4.Test
 ```bash
-python test.py
+python test.py --gpu_ids 0 --name ft_ResNet50 --test_dir ./test
+```
+To get a comrephensive evaluation, we select 30 images as query images. 
+
+`gpu_ids` which gpu to run.
+
+`name` the name of output model.
+
+`test_dir` the dir containing query and gallery.
+
+```
+    test/
+       query/
+             dog/1.jpg
+             ...
+             cat/2.png   
+        gallery/
+             dog/xxx.jpg
+             dog/xxy.png
+             cat/123.png
+             cat/asd932_.png
+             ...
+             dog/xxz.jpg
+             cat/nsdf3.jpeg     
 ```
 

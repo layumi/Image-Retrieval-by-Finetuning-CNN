@@ -76,12 +76,17 @@ Every class is store in a separate folder under the train/val dir.
              val/cat/nsdf3.jpeg
 ```
 
+***Add more training data***
+You can use the tool we mentioned to download more images in Google Image.
+For training, just put them into the `noisy/train`.
+It will automatically count the number of folders as the number of classes. 
 
-### 4.Test
+### 3.Test
 ```bash
 python test.py --gpu_ids 0 --name ft_ResNet50 --test_dir ./test
 ```
 To get a comrephensive evaluation, we select 30 images as query images. 
+(If you only want to find related images of one query image, please use `demo.py`)
 
 `gpu_ids` which gpu to run.
 
@@ -104,4 +109,6 @@ To get a comrephensive evaluation, we select 30 images as query images.
              dog/xxz.jpg
              cat/nsdf3.jpeg     
 ```
-
+***Add more training data***
+In this demo, we just use images from 30 classes(keywords). 
+If you add more data, you may need to change the Line 163 (keep it same with your training code).

@@ -27,9 +27,22 @@ python demo.py --gpu_ids 0 --name ft_ResNet50 --test_dir ./gallery  --query_path
 ```
 `gpu_ids` which gpu to run.
 
-`name` the name of output model.
+`name` the name of model. 
 
-`data_dir` the training dataset dir. 
+`test_dir` the dir including all candidate images. For example,
+
+```
+        gallery/
+             dog/xxx.jpg
+             dog/xxy.png
+             cat/123.png
+             cat/asd932_.png
+             ...
+             dog/xxz.jpg
+             cat/nsdf3.jpeg
+```
+
+`query_path` the path of the image you want to test.
 
 Run `demo.py` under the terminal or graphical user interface (i.e. spyder)
 In the terminal, it will output the paths of the top-10 related images.

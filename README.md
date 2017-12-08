@@ -23,11 +23,17 @@ Here I noted that our code is tested based on Pytorch 0.2.0 and Torchvision 0.2.
 
 ### 0.You may try our trained model first
 ```bash
-python demo.py --
+python demo.py --gpu_ids 0 --name ft_ResNet50 --test_dir ./gallery  --query_path ./demo.jpg
 ```
-You may run the code under the terminal or graphical user interface (i.e. spyder)
-In the terminal, it will output the path of the top-10 related images.
-Under the graphical user interface, the top-10 images will be showed.
+`gpu_ids` which gpu to run.
+
+`name` the name of output model.
+
+`data_dir` the training dataset dir. 
+
+Run `demo.py` under the terminal or graphical user interface (i.e. spyder)
+In the terminal, it will output the paths of the top-10 related images.
+In addition to top-10 image paths, the images will be showed if you run the code under the graphical user interface.
 
 ### 1.Collect Training data from Google Image
 Google Image contains lots of data. 

@@ -22,10 +22,11 @@ import os
 # --------
 parser = argparse.ArgumentParser(description='Training')
 parser.add_argument('--gpu_ids',default='0', type=str,help='gpu_ids: e.g. 0  0,1,2  0,2')
-parser.add_argument('--name',default='ft_ResNet50', type=str, help='output dir name')
+parser.add_argument('--name',default='ft_ResNet50', type=str, help='output model name')
+parser.add_argument('--data_dir',default='./data_dir',type=str, help='training dir path')
 
 opt = parser.parse_args()
-
+data_dir = opt.data_dir
 name = opt.name
 str_ids = opt.gpu_ids.split(',')
 gpu_ids = []
@@ -79,7 +80,6 @@ data_transforms = {
     ]),
 }
 
-data_dir = 'noisy_pytorch'
 image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                           data_transforms[x])
                   for x in ['train', 'val']}
@@ -240,8 +240,6 @@ def save_network(network, epoch_label):
 model_ft = models.resnet50(pretrained=True)
 num_ftrs = model_ft.fc.in_features
 add_block = []
-add_block += [nn.Dropout(p=0.2)]
-#print(len(class_names))
 add_block += [nn.Linear(num_ftrs, len(class_names))]
 model_ft.fc = nn.Sequential(*add_block)
 

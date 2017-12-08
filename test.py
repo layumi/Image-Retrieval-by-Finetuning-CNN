@@ -68,7 +68,7 @@ if len(gpu_ids)>0:
 # Just normalization for validation
 data_transforms = transforms.Compose([
         transforms.Resize(256),
-        #transforms.CenterCrop(224),
+        transforms.CenterCrop(224),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ############### Ten Crop        
@@ -160,12 +160,9 @@ def extract_feature(model,dataloaders):
 model_ft = models.resnet50(pretrained=False)
 num_ftrs = model_ft.fc.in_features
 add_block = []
-add_block += [nn.Linear(num_ftrs, len(class_names))]
+add_block += [nn.Linear(num_ftrs, 30)]
 model_ft.fc = nn.Sequential(*add_block)
 model = load_network(model_ft)
-
-# Load ImageNet Trained model
-#model = models.resnet50(pretrained=True)
 
 # remove the final fc layer
 model.fc = nn.Sequential()

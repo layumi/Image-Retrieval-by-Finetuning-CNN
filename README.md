@@ -20,17 +20,45 @@ Beacause pytorch and torchvision are ongoing projects.
 
 Here I noted that our code is tested based on Pytorch 0.2.0 and Torchvision 0.2.0.
 
-### 1.Train
+
+### 0.You may try our trained model first
 ```bash
-python train.py --gpu_ids 0 
+python demo.py --
+```
+You may run the code under the terminal or graphical user interface (i.e. spyder)
+In the terminal, it will output the path of the top-10 related images.
+Under the graphical user interface, the top-10 images will be showed.
+
+### 1.Collect Training data from Google Image
+Google Image contains lots of data. 
+Despite of noisy images, most images are somehow related to the keyword.
+So we use xxx method collecting the data from Google Image.
+
+### 2.Train
+```bash
+python train.py --gpu_ids 0 --name ft_ResNet50 --data_dir ./noisy
+```
+`gpu_ids` which gpu to run.
+
+`name` the name of output model.
+
+`data_dir` the training dataset dir. 
+
+For example, `data_dir` should include a training dir `train` and a validation dir `val`.
+Every class is store in a separate folder under the train/val dir.
+```
+        noisy/
+             train/dog/xxx.jpg
+             train/dog/xxy.png
+             train/cat/123.png
+             train/cat/asd932_.png
+             ...
+             val/dog/xxz.jpg
+             val/cat/nsdf3.jpeg
 ```
 
-### 2.Demo
-```bash
-python demo.py
-```
 
-### 3.Test
+### 4.Test
 ```bash
 python test.py
 ```
